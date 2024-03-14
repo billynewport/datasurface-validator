@@ -35,7 +35,7 @@ jobs:
     - name: Run check script
       run: python -m datasurface.handler.action ${{ github.workspace }}/main ${{ github.workspace }}/pr
       env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
-          BASE_REPOSITORY: ${{ github.repository }}
-          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
-          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+          GITHUB_TOKEN: ${{ inputs.github_token }}      
+          BASE_REPOSITORY: ${{ inputs.base_repository }}
+          HEAD_REPOSITORY: ${{ inputs.head_repository }}
+          HEAD_BRANCH: ${{ inputs.head_branch }}

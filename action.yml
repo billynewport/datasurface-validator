@@ -1,15 +1,19 @@
 name: datasurface-validator
 description: 'DataSurface Pull Request Validator'
+inputs:
+  github_token:
+    required: true
+  base_repository:
+    required: true
+  head_repository:
+    required: true
+  head_branch:
+    required: true
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+runs:
+  using: 'composite'
 
-jobs:
-  check:
-    runs-on: ubuntu-latest
-
-    steps:
+  steps:
     - name: Checkout PR code
       uses: actions/checkout@v2
       with:

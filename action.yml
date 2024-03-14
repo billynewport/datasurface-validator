@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r ${{ github.workspace }}/main/requirements.txt
+        pip install -r ${{ inputs.base_repository }}/main/requirements.txt
 
     - name: Run check script
       run: python -m datasurface.handler.action ${{ github.workspace }}/main ${{ github.workspace }}/pr

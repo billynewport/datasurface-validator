@@ -13,12 +13,14 @@ jobs:
     - name: Checkout PR code
       uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.pull_request.head.sha }}
+        token: ${{ inputs.github_token }}
+        ref: ${{ inputs.head_branch }}
         path: pr
 
     - name: Checkout main branch code
       uses: actions/checkout@v2
       with:
+        token: ${{ inputs.github_token }}
         ref: 'main'
         path: main
 

@@ -32,3 +32,5 @@ The head_repository is where the proposed new ecosystem model is coming from and
 
 Together, the head_repository and head_branch must be authorized in the model for any changes found when comparing the model in the 
 head against the base model.
+
+The validator uses the datasurface module defined in the main repository requirements.txt.

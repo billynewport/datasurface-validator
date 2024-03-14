@@ -25,4 +25,8 @@ jobs:
           head_branch: ${{ github.event.pull_request.head.ref }}          
 
 ```
-The 4 inputs must be passed so that the datasurface-validator action can perform the task.
+The 4 inputs must be passed so that the datasurface-validator action can perform the task. The github_token allows
+the validator to access the repositories. The base_repository is the current live model taken from that repository.
+The head_repository is where the proposed new ecosystem model is coming from and the branch is head_branch. Together,
+the head_repository and head_branch must be authorized in the model for any changes found when comparing the model in the 
+head against the base model.

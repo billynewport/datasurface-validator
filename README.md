@@ -4,6 +4,7 @@ pull request logs.
 
 This should be called from a workflow in the repository similar to this:
 
+```yaml
 name: DataSurface Model Validator
 
 on:
@@ -23,4 +24,5 @@ jobs:
           head_repository: ${{ github.event.pull_request.head.repo.full_name }}
           head_branch: ${{ github.event.pull_request.head.ref }}          
 
-  The 4 inputs must be passed so that the datasurface-validator action can perform the task.
+```
+The 4 inputs must be passed so that the datasurface-validator action can perform the task.

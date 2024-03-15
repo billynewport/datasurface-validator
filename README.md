@@ -34,3 +34,34 @@ Together, the head_repository and head_branch must be authorized in the model fo
 head against the base model.
 
 The validator uses the datasurface module defined in the main repository requirements.txt.
+
+The following check-files-changes.yml should also be added to a repositories .github/workflow folder:
+
+```yml
+name: Check Changed Files are all python files
+on: [push, pull_request]
+
+# Idea here is to prevent any changes which can prevent repository workflows from running
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch all history so we can compare with the previous commit
+
+    - name: Check changed files
+      run: |
+        changed_files=$(git diff --name-only HEAD^ HEAD)
+        for file in $changed_files; do
+          if [[ ! $file =~ .*\.py$ ]] && [[ ! $file =~ .*\.md$ ]] && [[ ! $file == .gitignore ]]; then
+            echo "Error: $file cannot be changed. Only python files, markdown files, and .gitignore are allowed."
+            exit 1
+          fi
+        done
+```
+
+So, a DataSurface model repository would have 2 yml files. One like the validator one above and this file checker as the second one. It doesn't
+seem possible to handle this in a single action.
